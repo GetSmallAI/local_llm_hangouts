@@ -6,19 +6,22 @@ const WHEN_RESPONSE: &str = "Monday, May 4th at 6:00pm PST";
 const HEADER_STYLE: &str = "\x1b[1;38;2;64;224;208m";
 const RESET_STYLE: &str = "\x1b[0m";
 const BANNER: &str = r#"
-  _                     _     _      _      __  __
- | |    ___   ___ __ _| |   | |    | |    |  \/  |
- | |   / _ \ / __/ _` | |   | |    | |    | |\/| |
- | |__| (_) | (_| (_| | |   | |___ | |___ | |  | |
- |_____\___/ \___\__,_|_|   |_____||_____||_|  |_|
-
-  _   _                                         _
- | | | | __ _ _ __   __ _  ___  _   _  ___    | |_ ___
- | |_| |/ _` | '_ \ / _` |/ _ \| | | |/ __|   | __/ __|
- |  _  | (_| | | | | (_| | (_) | |_| |\__ \_  | |_\__ \
- |_| |_|\__,_|_| |_|\__, |\___/ \__,_||___(_)  \__|___/
-                     |___/
+   __________________________________________________________
+  /                                                        /|
+ /   Local LLM Hangouts                                   / |
++--------------------------------------------------------+  |
+|                                                        |  |
+|   /where   Find the next meetup location               |  |
+|   /when    See the next meetup time                    |  |
+|   /exit    Quit the CLI                                |  /
++--------------------------------------------------------+ /
+ \_______________________________________________________\/
 "#;
+
+enum CommandResult {
+    Continue(i32),
+    Exit(i32),
+}
 
 fn main() {
     print_header();
@@ -26,7 +29,9 @@ fn main() {
     let mut args = env::args().skip(1);
 
     if let Some(command) = args.next() {
-        let exit_code = run_command(&command);
+        let exit_code = match run_command(&command) {
+            CommandResult::Continue(code) | CommandResult::Exit(code) => code,
+        };
         std::process::exit(exit_code);
     }
 
@@ -42,7 +47,7 @@ fn print_help() {
     println!("Commands:");
     println!("  /where  Show the venue");
     println!("  /when   Show the date and time");
-    println!("  exit    Quit the CLI");
+    println!("  /exit   Quit the CLI");
     println!();
 }
 
@@ -63,11 +68,10 @@ fn repl() {
             Ok(_) => {
                 let command = input.trim();
 
-                if command.eq_ignore_ascii_case("exit") || command.eq_ignore_ascii_case("quit") {
-                    break;
+                match run_command(command) {
+                    CommandResult::Continue(_) => {}
+                    CommandResult::Exit(_) => break,
                 }
-
-                run_command(command);
             }
             Err(error) => {
                 eprintln!("Failed to read input: {error}");
@@ -77,25 +81,26 @@ fn repl() {
     }
 }
 
-fn run_command(command: &str) -> i32 {
+fn run_command(command: &str) -> CommandResult {
     match command {
         "/where" => {
             println!("{WHERE_RESPONSE}");
-            0
+            CommandResult::Continue(0)
         }
         "/when" => {
             println!("{WHEN_RESPONSE}");
-            0
+            CommandResult::Continue(0)
         }
         "/help" | "help" => {
             print_help();
-            0
+            CommandResult::Continue(0)
         }
-        "" => 0,
+        "/exit" | "exit" | "quit" => CommandResult::Exit(0),
+        "" => CommandResult::Continue(0),
         _ => {
             eprintln!("Unknown command: {command}");
-            eprintln!("Try /where or /when.");
-            1
+            eprintln!("Try /where, /when, or /exit.");
+            CommandResult::Continue(1)
         }
     }
 }

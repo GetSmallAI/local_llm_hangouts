@@ -8,6 +8,7 @@ When you run the CLI, it shows a large turquoise ASCII header for `Local LLM Han
 
 - `/where`
 - `/when`
+- `/exit`
 
 The responses are hard-coded into the Rust binary:
 
@@ -37,7 +38,7 @@ You will see the ASCII header and a prompt. Then type one of:
 To leave the CLI:
 
 ```text
-exit
+/exit
 ```
 
 ## Run a single command directly
@@ -71,26 +72,25 @@ target/release/local_llm_hangouts
 ```text
 $ cargo run
 
-  _                     _     _      _      __  __
- | |    ___   ___ __ _| |   | |    | |    |  \/  |
- | |   / _ \ / __/ _` | |   | |    | |    | |\/| |
- | |__| (_) | (_| (_| | |   | |___ | |___ | |  | |
- |_____\___/ \___\__,_|_|   |_____||_____||_|  |_|
-
-  _   _                                         _
- | | | | __ _ _ __   __ _  ___  _   _  ___    | |_ ___
- | |_| |/ _` | '_ \ / _` |/ _ \| | | |/ __|   | __/ __|
- |  _  | (_| | | | | (_| | (_) | |_| |\__ \_  | |_\__ \
- |_| |_|\__,_|_| |_|\__, |\___/ \__,_||___(_)  \__|___/
-                     |___/
+   __________________________________________________________
+  /                                                        /|
+ /   Local LLM Hangouts                                   / |
++--------------------------------------------------------+  |
+|                                                        |  |
+|   /where   Find the next meetup location               |  |
+|   /when    See the next meetup time                    |  |
+|   /exit    Quit the CLI                                |  /
++--------------------------------------------------------+ /
+ \_______________________________________________________\/
 
 Commands:
   /where  Show the venue
   /when   Show the date and time
-  exit    Quit the CLI
+  /exit   Quit the CLI
 
 > /where
 The Social Study, 1795 Geary Blvd, San Francisco
 > /when
 Monday, May 4th at 6:00pm PST
+> /exit
 ```
