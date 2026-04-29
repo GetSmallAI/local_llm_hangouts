@@ -66,28 +66,3 @@ The compiled binary will be here:
 ```text
 target/release/local_llm_hangouts
 ```
-
-## Example session
-
-```text
-$ cargo run
-
-   ________________________________________
-  /                                      /|
- /   Local LLM Hangouts                 / |
-+--------------------------------------+  |
-|                                      |  /
-+--------------------------------------+ /
- \_____________________________________\/
-
-Commands:
-  /where  Show the venue
-  /when   Show the date and time
-  /exit   Quit the CLI
-
-> /where
-The Social Study, 1795 Geary Blvd, San Francisco
-> /when
-Monday, May 4th at 6:00pm PST
-> /exit
-```
