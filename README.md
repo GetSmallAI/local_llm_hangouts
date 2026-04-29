@@ -4,7 +4,7 @@ A tiny Rust CLI for checking the next Local LLM Hangouts meetup details.
 
 ## What it does
 
-When you run the CLI, it shows a large ASCII header for `Local LLM Hangouts` and accepts two commands:
+When you run the CLI, it shows a large turquoise ASCII header for `Local LLM Hangouts` and accepts two commands:
 
 - `/where`
 - `/when`
@@ -71,13 +71,18 @@ target/release/local_llm_hangouts
 ```text
 $ cargo run
 
-  _                    _   _      _      _   _                                  _
- | |    ___   ___ __ _| | | |    | |    | | | | __ _ _ __   __ _  ___  _   _| |_
- | |   / _ \ / __/ _` | | | |    | |    | |_| |/ _` | '_ \ / _` |/ _ \| | | | __|
- | |__| (_) | (_| (_| | | | |___ | |___ |  _  | (_| | | | | (_| | (_) | |_| | |_
- |_____\___/ \___\__,_|_| |_____||_____||_| |_|\__,_|_| |_|\__, |\___/ \__,_|\__|
-                                                             / /
-                                                            /_/
+  _                     _     _      _      __  __
+ | |    ___   ___ __ _| |   | |    | |    |  \/  |
+ | |   / _ \ / __/ _` | |   | |    | |    | |\/| |
+ | |__| (_) | (_| (_| | |   | |___ | |___ | |  | |
+ |_____\___/ \___\__,_|_|   |_____||_____||_|  |_|
+
+  _   _                                         _
+ | | | | __ _ _ __   __ _  ___  _   _  ___    | |_ ___
+ | |_| |/ _` | '_ \ / _` |/ _ \| | | |/ __|   | __/ __|
+ |  _  | (_| | | | | (_| | (_) | |_| |\__ \_  | |_\__ \
+ |_| |_|\__,_|_| |_|\__, |\___/ \__,_||___(_)  \__|___/
+                     |___/
 
 Commands:
   /where  Show the venue
