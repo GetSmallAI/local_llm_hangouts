@@ -1,6 +1,6 @@
 # Local LLM Hangouts
 
-A tiny Rust CLI for checking the next Local LLM Hangouts meetup details.
+A tiny Rust CLI for checking the next Local LLM Hangout Morgan has planned.
 
 ## How it works
 
